@@ -6,8 +6,8 @@ strategy:
   matrix:
     linux:
       imageName: "ubuntu-latest"
-    windows:
-      imageName: "windows-latest"
+    # windows:
+    #   imageName: "windows-latest"
   maxParallel: 2
 
 pool:
