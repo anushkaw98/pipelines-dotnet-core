@@ -1,10 +1,20 @@
-variables:
-- name: one
-  value: initialValue 
+trigger:
+ - master
+
+
+strategy:
+  matrix:
+    linux:
+      imageName: "ubuntu-latest"
+    windows:
+      imageName: "windows-latest"
+  maxParallel: 2
+
+pool:
+  vmImage: $(imageName)
 
 steps:
-  - script: |
-      echo ${{ variables.one }} # outputs initialValue
-      echo $(one)
-      
-    displayName: First variable pass
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
